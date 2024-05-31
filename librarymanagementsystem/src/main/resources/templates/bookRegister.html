@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Register</title>
+<style>
+*{
+padding:0;
+margin:0;
+}
+body{
+background-color:lightyellow;
+}
+.book{
+float:right;
+margin-right:2cm;
+margin-top:-3cm;
+
+}
+.bimg{
+height:15cm;
+width:13cm;
+object-fit:fill;
+}
+.form{
+text-align:center;
+}
+.bname{
+margin-top:40px;
+}
+.sub1{
+margin-top:40px;
+}
+h2{
+margin-left:11cm;
+margin-top:5cm;
+}
+#t,#a,#p,#k,#btn1{
+padding:5px;
+}
+#btn1{
+cursor:pointer;
+}
+footer{
+margin-top:13%;
+}
+
+.success-message {
+  background-color: #5e057e;
+  color: #fff;
+  padding: 10px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+
+</style>
+</head>
+<body>
+
+
+<div th:if="${param.success}">
+	<div class="success-message">
+		<p>Registration Successful!</p>
+	</div>
+</div>
+
+
+
+<h2>Add Book Here...</h2>
+<div class="book">
+<img class="bimg" th:src="@{/image/book2.webp}">
+</div>
+	<div class="form">
+		<form action="" th:action="@{/bookRegister}" th:method="post" th:object="${book}" id="registerbook">
+			<div class="form-details">
+
+				<div class="bname">
+<!--					                <label for=""><b>User username</b></label>-->Name:
+					<input id="t" type="text" placeholder="Enter the book username" name="tname" th:field="*{title}" required><br>
+				</div>
+
+				<div class="bname">
+					Author:
+					<input id="a" type="text" placeholder="Enter the author username" name="aname" th:field="*{author}" required><br>
+				</div>
+
+				<div class="bname">
+				             Price:
+					<input id="p" type="number" placeholder="Enter the price" name="psw" th:field="*{price}" required><br>
+				</div>
+
+				<div class="bname">
+					Copies:
+					<input id="k" type="number" placeholder="Enter the copies" name="copies" th:field="*{copies}" required><br>
+				</div>
+
+				<div class="sub1"><button id="btn1" type="submit">Add Book</button></div>
+			</div>
+		</form>
+	</div>
+	<footer>
+<div><p> @copyright reserved-2024 </p></div>
+</footer>
+</body>
+</html>

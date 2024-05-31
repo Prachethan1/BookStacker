@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Contact</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+	
+	body{
+	margin:0;
+	padding:0;
+	
+	}
+	img{
+	height:19.2cm;
+	width:1519px;
+	}
+	
+	.contact .socialhead{
+    font-size: 20px; 
+    margin-bottom: 20px; 
+    position: absolute;
+    top:35%;
+    margin-left:800px;
+    transform: translate(-50%,-50%);
+    color: white;
+    z-index: 1;
+    
+  }	
+  .socialhead{
+  margin-top:30px;
+  margin-right:30px;
+  
+  }
+  .social1,.social2{
+  
+ display:flex;
+ flex-wrap:wrap;
+  justify-content:space-evenly;
+  }
+  
+  .fa:hover {
+    opacity: 0.6;
+}
+.fa {
+  padding: 10px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius:20%;
+}
+
+.fa-facebook {
+	
+  background: black;
+  color: white;
+}
+
+.fa-twitter {
+  background: black;
+  color: white;
+}
+
+.fa-linkedin {
+  background: black;
+  color: white;
+}
+
+.fa-youtube {
+  background: black;
+  color: white;
+}
+
+.fa-instagram {
+  background: black;
+  color: white;
+}
+
+.fa{
+	margin-top:40px;
+	margin-right:16cm;
+}
+	
+</style>
+</head>
+<body>
+	<div class="contact">
+	 <img th:src="@{/image/contactpic.jpg}"> 
+		<div class="socialhead">
+		<div class="socail1">
+			<div><a href="#" class="fa fa-facebook"></a></div><br>
+			<div><a href="#" class="fa fa-twitter"></a></div><br>
+			<div><a href="#" class="fa fa-linkedin"></a></div><br>
+			</div>
+			<div class="socail2">
+			<div><a href="#" class="fa fa-youtube"></a></div><br>
+			<div><a href="#" class="fa fa-instagram"></a></div><br>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

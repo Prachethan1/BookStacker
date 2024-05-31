@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <style>
+        *{
+padding:0;
+margin:0;
+}
+body{
+background-color:lightyellow;
+font-family:sans-serif;
+}
+.b{
+float:right;
+margin-right:3cm;
+margin-top:1cm;
+object-fit:cover;
+
+}
+.head1{
+margin-top:3cm;
+margin-left:7cm;
+}
+.h{
+
+margin-top:2cm;
+margin-left:2cm;
+}
+table,th,td{
+width:45%;
+border:2px solid black;
+border-collapse: collapse;
+background-color:skyblue;
+}
+th, td {
+  border-color: black;
+  text-align:center;
+  padding:0.5cm;
+}
+table{
+width:80%;}
+.th1{
+width:20%;
+}
+.th4{
+width:30%;
+}
+
+</style>
+</head>
+<body>
+<div class="head1"><h2>View Cart</h2></div>
+<div class="b">
+</div>
+<div class="h">
+    <table>
+        <thead>
+        <tr id="tr1">
+            <th class="th1">bookId</th>
+            <th class="th2">Name</th>
+            <th class="th3">Author</th>
+            <th class="th4">Price</th>
+            <th class="th5">Copies</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c:${cart}">
+            <td th:text="${c.bookId}"></td>
+            <td th:text="${c.title}"></td>
+            <td th:text="${c.author}"></td>
+            <td th:text="${c.price}"></td>
+            <td th:text="${c.copies}"></td>
+
+            <td>
+                <form th:action="@{/viewCart/delete/{bookId}(bookId=${c.bookId})}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Available Books</title>
+<style>
+*{
+padding:0;
+margin:0;
+}
+body{
+background-color:lightyellow;
+font-family:sans-serif;
+}
+.b{
+float:right;
+margin-right:3cm;
+margin-top:1cm;
+object-fit:cover;
+
+}
+.head1{
+margin-top:3cm;
+margin-left:7cm;
+}
+.h{
+
+margin-top:2cm;
+margin-left:2cm;
+}
+table,th,td{
+width:45%;
+border:2px solid black;
+border-collapse: collapse;
+background-color:skyblue;
+}
+th, td {
+  border-color: black;
+  text-align:center;
+  padding:0.5cm;
+}
+table{
+width:80%;}
+.th1{
+width:20%;
+}
+.th4{
+width:30%;
+}
+.th5 .th6{
+width:20%;
+}
+.bookimg{
+height:7cm;
+width:15cm;
+}
+</style>
+</head>
+<body>
+<div class="head1"><h2>View Available Books</h2></div>
+<div class="b">
+<!--    <img class="bookimg" th:src="@{/image/bookview.jpg}">-->
+</div>
+<div class="h">
+<table>
+<thead>
+  <tr id="tr1">
+    <th class="th1">BookId</th>
+    <th class="th2">Name</th>
+    <th class="th3">Author</th>
+    <th class="th4">Price</th>
+      <th class="th5">Copies</th>
+      <th class="th6">Add to Cart</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr th:each="b:${books}">
+    <td th:text="${b.bookId}"></td>
+    <td th:text="${b.title}"></td>
+    <td th:text="${b.author}"></td>
+    <td th:text="${b.price}"></td>
+      <td th:text="${b.copies}"></td>
+      <td><a id="btn1" th:href="@{/viewCart/{bookId}(bookId=${b.bookId})}">AddToCart</a>
+  </tr>
+  </tbody>
+</table>
+</div>
+<!--<script type="text/javascript">-->
+<!--    document.getElementById("btn1").onclick = function () {-->
+<!--        location.href = "viewCart.html";-->
+<!--    };-->
+<!--</script>-->
+</body>
+</html>

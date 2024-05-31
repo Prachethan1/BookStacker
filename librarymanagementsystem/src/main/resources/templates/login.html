@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        *{
+            padding: 0;
+            margin: 0;
+            color:#ffffff;
+        }
+        body{
+        font-family: "poppins";
+        background: #1a1a2e;
+        }
+        .login{
+            /* background-color: aqua; */
+
+            width: 450px;
+            height: 500px;
+            margin-left: 35%;
+            margin-top:50px;
+        }
+        .studentpic{
+            /* margin-left: 500px; */
+            text-align: center;
+  margin: 0 0 12px 0;
+        }
+        .avatar{
+            border-radius: 50%;
+            height: 150px;
+            margin-top: 20px;
+        }
+        .form-details{
+            padding: 16px;
+            text-align: center;
+        }
+        .username{
+            margin-top: 30px;
+            margin-bottom: 25px;
+        }
+        #username{
+            margin-left: 15px;
+            height: 15px;
+            width: 200px;
+            padding: 3px;
+            background-color: #4e4e6a22;
+            border: 1px #8d8dac22 solid;
+        }
+        #password{
+            margin-left: 15px;
+            height: 15px;
+            width: 200px;
+            padding: 3px;
+            background-color: #4e4e6a22;
+            border: 1px #8d8dac22 solid;
+        }
+        .pass{
+            margin-top:30px;
+            margin-bottom: 25px;
+        }
+        #btn1{
+            height: 25px;
+            width: 50px;
+            padding: 3.5px;
+            background-color: rgba(0, 0, 0, 0.566);
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .rem{
+            margin-top: 25px;
+        }
+        .head{
+            text-align: center;
+            margin-top: 90px;
+        }
+
+
+        .error-message, .logout-message {
+  background-color: #5e057e;
+  color: #fff;
+  padding: 10px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="head"><h2>Login &nbsp;Form</h2></div>
+
+
+
+    <div th:if="${param.error}">
+        <div class="error-message">
+            <p>Invalid Username or password</p>
+        </div>
+    </div>
+
+    <div th:if="${param.logout}">
+        <div class="logout-message">
+            <p>Logout Successful!</p>
+        </div>
+    </div>
+
+
+
+
+    <div class="login">
+        <div class="vl"></div>
+        <form th:action="@{/login}" th:method="post" role="form" th:object="${userLogin}" id="loginForm">
+            <div class="studentpic">
+                <img src="" th:src="@{/image/pic.webp}" alt="pic" class="avatar">
+            </div>
+            <div class="form-details">
+                <div class="username">
+<!--                <label for="uname"><b>User username</b></label>-->Username:
+                <input id="username" type="text" placeholder="Enter Username" name="uname" th:field="*{username}" required><br>
+                </div>
+                <div class="pass">
+<!--                <label for="psw"><b>Password</b></label>-->Password:
+                <input id="password" type="password" placeholder="Enter Password" name="psw" th:field="*{password}" required><br>
+                 </div>
+                <div class="sub"><button id="btn1" type="submit">Submit</button></div>
+              </div>
+        </form>
+        <span> Register here: <a th:href="@{/signup}">Signup</a></span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0e2433;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #45b6fe;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+<!--        .container {-->
+<!--            max-width: 1200px;-->
+<!--            margin: 20px auto;-->
+<!--            padding: 20px;-->
+<!--            background-color: #0e2433;-->
+<!--            border-radius: 5px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);-->
+<!--        }-->
+
+<!--        h2 {-->
+<!--            color: #45b6fe;-->
+<!--        }-->
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+  }
+
+  .navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+
+        /* Add more styles and components for your dashboard here */
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>USER Dashboard</h1>
+</div>
+<div class="container">
+    <h2>Welcome, [[${user.getUsername()}]]</h2>
+</div>
+
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a th:href="@{/about}">About</a>
+<!--        <div class="dropdown">-->
+<!--            <button class="dropbtn">Login-->
+<!--                <i class="fa fa-caret-down"></i>-->
+<!--            </button>-->
+<!--            <div class="dropdown-content">-->
+<!--                <a th:href="@{/login}">Student Login</a>-->
+<!--                &lt;!&ndash;      <a th:href="@{/login}">Admin Login</a>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <a th:href="@{/signup}">Sign up</a>-->
+        <a th:href="@{/contact}">Contact</a>
+           <a th:href="@{/bookRegister}">Add books</a>
+           <a th:href="@{/viewBooks}">View Books</a>
+
+        <a th:href="@{/viewCart}">View Cart</a>
+
+        <span sec:authorize="isAuthenticated">
+        <a th:href="@{/logout}">
+         Logout
+        </a>
+    </span>
+
+
+    </div>
+
+
+</body>
+</html>
