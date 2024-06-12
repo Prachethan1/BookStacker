@@ -2,12 +2,10 @@ package com.librarymanagementsystem.librarymanagementsystem.entity;
 
 import com.librarymanagementsystem.librarymanagementsystem.dto.BorrowRequestDto;
 import com.librarymanagementsystem.librarymanagementsystem.dto.ReturnRequestDto;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Book {
@@ -22,6 +20,10 @@ public class Book {
     private int price;
     private String description;
     private String borrower;
+
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cart> carts;
 
     public Book(int bookId,String title, String author, int price) {
         this.bookId = bookId;

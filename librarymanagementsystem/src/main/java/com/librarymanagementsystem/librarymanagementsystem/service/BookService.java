@@ -24,4 +24,6 @@ public interface BookService {
     void collectFine(User borrower, double fine);
     void updateBookCopies(int bookId) throws BookException;
     void updateBookCopiesInViewBooks(int bookId) throws BookException;
+    void decreaseBookCopies(int bookId) throws BookException;
+    void increaseBookCopies(int bookId) throws BookException;
 }

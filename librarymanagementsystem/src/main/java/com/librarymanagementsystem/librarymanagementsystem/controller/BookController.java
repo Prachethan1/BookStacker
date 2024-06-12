@@ -109,18 +109,19 @@ public class BookController {
 
 
         Book book = bookService.getBook(bookId);
-        Cart cart1 = cartService.getCart(bookId);
+        Cart cart = cartService.getCart(bookId);
         if(book.getCopies()>0) {
-            Cart cart = new Cart(book.getBookId(), book.getTitle(), book.getAuthor(), book.getPrice(), 1);
-            cartService.addBookToCart(book, cart);
-            bookService.updateBookCopiesInViewBooks(bookId);
+            //Cart cart = new Cart(book.getBookId(), book.getTitle(), book.getAuthor(), book.getPrice(), 1);
+            cartService.addBookToCart(bookId);
+            bookService.decreaseBookCopies(bookId);
+            //bookService.updateBookCopiesInViewBooks(bookId);
             //cartService.updateCartCopiesInViewCart(bookId);
         }
-        else if(cart1.getCopies()>0 && book.getCopies()>0 && bookId== cart1.getBookId()){
-            Cart cart = new Cart(book.getBookId(), book.getTitle(), book.getAuthor(), book.getPrice(), cart1.getCopies()+1);
-            cartService.addBookToCart(book, cart);
-            bookService.updateBookCopiesInViewBooks(bookId);
-        }
+//        else if(cart1.getCopies()>0 && book.getCopies()>0 && bookId== cart1.getBookId()){
+//            Cart cart = new Cart(book.getBookId(), book.getTitle(), book.getAuthor(), book.getPrice(), cart1.getCopies()+1);
+//            cartService.addBookToCart(book, cart);
+//            bookService.updateBookCopiesInViewBooks(bookId);
+//        }
 //        else if(cart.getCopies()>1){
 //            cartService.updateCopies(book);
 //        }
@@ -129,10 +130,11 @@ public class BookController {
 
 
 
-    @RequestMapping(value = "/viewCart/delete/{cartId}", method = RequestMethod.POST)
-    public ModelAndView deleteCartItem(@PathVariable("cartId") int cartId) throws BookException {
-            cartService.deleteCartItem(cartId);
-            //bookService.updateBookCopies(bookId);
+    @RequestMapping(value = "/viewCart/delete/{bookId}", method = RequestMethod.POST)
+    public ModelAndView deleteCartItem(@PathVariable("bookId") int bookId) throws BookException {
+            cartService.deleteCartItem(bookId);
+//            bookService.updateBookCopies(bookId);
+        bookService.increaseBookCopies(bookId);
         return new ModelAndView("redirect:/viewCart");
     }
 

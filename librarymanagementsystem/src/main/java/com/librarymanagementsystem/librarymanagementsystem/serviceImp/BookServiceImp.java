@@ -81,6 +81,25 @@ public class BookServiceImp implements BookService {
     }
 
 
+    @Override
+    public void decreaseBookCopies(int bookId) throws BookException {
+        Book book = getBook(bookId);
+        if (book.getCopies() > 0) {
+            book.setCopies(book.getCopies() - 1);
+            bookRepository.save(book);
+        } else {
+            throw new BookException("No copies left to borrow");
+        }
+    }
+
+    @Override
+    public void increaseBookCopies(int bookId) throws BookException {
+        Book book = getBook(bookId);
+        book.setCopies(book.getCopies() + 1);
+        bookRepository.save(book);
+    }
+
+
 
     @Override
     public Book updateBook(Book book) {

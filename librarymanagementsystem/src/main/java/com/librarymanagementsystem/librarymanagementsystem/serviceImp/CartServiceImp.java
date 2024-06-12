@@ -41,18 +41,35 @@ public class CartServiceImp implements CartService {
     }
 
     @Override
-    public void addBookToCart(Book book, Cart cart) {
+    public void addBookToCart(int bookId) throws BookException {
             //if (cart.getCopies() == 0) {
               //  cartItem = new Cart(book.getBookId(), book.getTitle(), book.getAuthor(), book.getPrice(), 1);
             //} else {
         //Cart cartItem = new Cart(book.getBookId(), book.getTitle(), book.getAuthor(), book.getPrice(), book.getCopies() + 1);
 
-        cartRepository.save(cart);
+//        cartRepository.save(cart);
 
 //        Cart cart = getCart(cartId);
 //        Book book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found"));
 //        cart.addBook(book);
 //        cartRepository.save(cart);
+
+
+        Book book = bookRepository.findById(bookId).orElseThrow(() -> new BookException("Book not found"));
+        //System.out.println(book);
+        if (book.getCopies() > 0) {
+            Cart cart = cartRepository.findByBookBookId(bookId);
+            if (cart == null) {
+                cart = new Cart(book, 1);
+            } else {
+                cart.setCopies(cart.getCopies() + 1);
+            }
+            cartRepository.save(cart);
+//            book.setCopies(book.getCopies() - 1);
+//            bookRepository.save(book);
+        } else {
+            throw new BookException("No more copies available");
+        }
     }
 
     @Override
@@ -78,7 +95,19 @@ public class CartServiceImp implements CartService {
 
 
     @Override
-    public void deleteCartItem(int cartId)throws BookException {
-        cartRepository.deleteById(cartId);
+    public void deleteCartItem(int bookId)throws BookException {
+        //cartRepository.deleteById(cartId);
+        Cart cart = cartRepository.findByBookBookId(bookId);
+        if (cart != null) {
+            if (cart.getCopies() > 1) {
+                cart.setCopies(cart.getCopies() - 1);
+                cartRepository.save(cart);
+            } else {
+                cartRepository.delete(cart);
+            }
+        }
+        else {
+            throw new BookException("Book not found in cart");
+        }
     }
 }
