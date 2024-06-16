@@ -58,9 +58,9 @@ public class CartServiceImp implements CartService {
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new BookException("Book not found"));
         //System.out.println(book);
         if (book.getCopies() > 0) {
-            Cart cart = cartRepository.findByBookBookId(bookId);
+            Cart cart = cartRepository.findByBookId(bookId);
             if (cart == null) {
-                cart = new Cart(book, 1);
+                cart = new Cart(book.getBookId(),book.getTitle(),book.getAuthor(),book.getPrice(), 1);
             } else {
                 cart.setCopies(cart.getCopies() + 1);
             }
@@ -97,7 +97,7 @@ public class CartServiceImp implements CartService {
     @Override
     public void deleteCartItem(int bookId)throws BookException {
         //cartRepository.deleteById(cartId);
-        Cart cart = cartRepository.findByBookBookId(bookId);
+        Cart cart = cartRepository.findByBookId(bookId);
         if (cart != null) {
             if (cart.getCopies() > 1) {
                 cart.setCopies(cart.getCopies() - 1);

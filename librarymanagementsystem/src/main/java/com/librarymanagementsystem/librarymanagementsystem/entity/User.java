@@ -30,7 +30,7 @@ public class User {
     private String address;
     private String branch;
     private String password;
-    private String role;
+    private String role="USER";
     private int noOfBooksIssued;
     private Double totalFine;
 

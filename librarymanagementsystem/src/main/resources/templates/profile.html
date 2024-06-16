@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile</h1>
+<!--    <div class="h">-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr id="tr1">-->
+<!--                <th class="th1">UserId</th>-->
+<!--                <th class="th2">Name</th>-->
+<!--                <th class="th3">Phone</th>-->
+<!--                <th class="th4">Address</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="u:${user}">-->
+<!--                <td th:text="${u.userId}"></td>-->
+<!--                <td th:text="${u.username}"></td>-->
+<!--                <td th:text="${u.phone}"></td>-->
+<!--                <td th:text="${u.address}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+<!--    <h4>Username:</h4>-->
+<!--<div sec:authentication="name"></div>-->
+<!--    <h4>UserId:</h4>-->
+<!--    <div sec:authentication="principal.userId"></div>-->
+<!--    <h4>Phone:</h4>-->
+<!--    <div sec:authentication="principal.phone"></div>-->
+<!--    <h4>Address:</h4>-->
+<!--    <div sec:authentication="principal.address"></div>-->
+
+    <div>
+    <h3>UserName:</h3>
+    <p th:text="${user.username}"></p>
+    <h3>UserId:</h3>
+    <p th:text="${user.userId}"></p>
+    <h3>Role:</h3>
+    <p th:text="${user.role}"></p>
+    <h3>Branch:</h3>
+    <p th:text="${user.branch}"></p>
+    <h3>Phone Number:</h3>
+    <p th:text="${user.phone}"></p>
+    <h3>Address:</h3>
+    <p th:text="${user.address}"></p>
+    </div>
+</body>
+</html>

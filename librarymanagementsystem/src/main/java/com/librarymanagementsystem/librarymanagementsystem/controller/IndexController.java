@@ -8,6 +8,7 @@ import com.librarymanagementsystem.librarymanagementsystem.exception.UserExcepti
 import com.librarymanagementsystem.librarymanagementsystem.service.BookService;
 import com.librarymanagementsystem.librarymanagementsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.List;
 
 
 @Controller
@@ -110,7 +113,23 @@ public String login(Model model, UserLoginDetails userLoginDetails) {
     public String contact(){
         return "contact";
     }
-    
+
+
+
+    @GetMapping("/profile")
+    public ModelAndView profile(@AuthenticationPrincipal UserDetails userDetails, Model model, Principal principal) throws UserException {
+
+        //UserDetails userDetail = userDetailsService.loadUserByUsername(principal.getName());
+        //System.out.println(user);
+        String username = userDetails.getUsername();
+        User user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+        ModelAndView modelAndView = new ModelAndView("profile");
+        return modelAndView;
+    }
+
+
+
 //    @GetMapping("/bookRegister")
 //    public String addBooks(Model model){
 //        model.addAttribute("bookForm",new Book());

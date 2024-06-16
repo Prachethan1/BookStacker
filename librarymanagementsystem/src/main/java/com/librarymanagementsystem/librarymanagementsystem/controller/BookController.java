@@ -109,7 +109,7 @@ public class BookController {
 
 
         Book book = bookService.getBook(bookId);
-        Cart cart = cartService.getCart(bookId);
+        //Cart cart = cartService.getCart(bookId);
         if(book.getCopies()>0) {
             //Cart cart = new Cart(book.getBookId(), book.getTitle(), book.getAuthor(), book.getPrice(), 1);
             cartService.addBookToCart(bookId);

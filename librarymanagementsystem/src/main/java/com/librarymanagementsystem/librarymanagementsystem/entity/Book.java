@@ -22,14 +22,15 @@ public class Book {
     private String borrower;
 
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cart> carts;
-
-    public Book(int bookId,String title, String author, int price) {
+//    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Cart> carts;
+//
+    public Book(int bookId,String title, int copies, String author, int price) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
         this.price = price;
+        this.copies=copies;
     }
 
 
